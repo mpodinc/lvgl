@@ -169,7 +169,7 @@
         #ifdef CONFIG_LV_MEM_CUSTOM_ALLOC
             #define LV_MEM_CUSTOM_ALLOC CONFIG_LV_MEM_CUSTOM_ALLOC
         #else
-            #define LV_MEM_CUSTOM_ALLOC   malloc
+            #define LV_MEM_CUSTOM_ALLOC(size)   heap_caps_malloc(size, MALLOC_CAP_SPIRAM)
         #endif
     #endif
     #ifndef LV_MEM_CUSTOM_FREE
@@ -183,7 +183,7 @@
         #ifdef CONFIG_LV_MEM_CUSTOM_REALLOC
             #define LV_MEM_CUSTOM_REALLOC CONFIG_LV_MEM_CUSTOM_REALLOC
         #else
-            #define LV_MEM_CUSTOM_REALLOC realloc
+            #define LV_MEM_CUSTOM_REALLOC(buf, size) heap_caps_realloc(buf, size, MALLOC_CAP_SPIRAM)
         #endif
     #endif
 #endif     /*LV_MEM_CUSTOM*/
